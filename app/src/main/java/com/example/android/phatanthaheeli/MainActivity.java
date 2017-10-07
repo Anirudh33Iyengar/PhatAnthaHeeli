@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
+//new push
     public void reset()
     {
         answerArray={"a","","","","",""};
