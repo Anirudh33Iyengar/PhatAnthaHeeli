@@ -6,67 +6,109 @@
     android:layout_height="match_parent"
     tools:context="com.example.android.phatanthaheeli.MainActivity">
 
-    <ImageView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:id="@+id/clue"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:src="@mipmap/ic_launcher" />
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:id="@+id/clue"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/ic_launcher" />
 
-    <GridView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/gridView1"
-        android:numColumns="auto_fit"
-        android:gravity="center"
-        android:layout_below="@+id/clue"
-        android:stretchMode="spacingWidthUniform"
-        android:layout_centerHorizontal="true"
-        android:columnWidth="40dp"
-        android:horizontalSpacing="10dp"
-        android:verticalSpacing="5dp"
+            <com.example.android.phatanthaheeli.utils.ExpandableHeightGridView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/gridView1"
+                android:numColumns="auto_fit"
+                android:gravity="center"
+                android:layout_below="@+id/clue"
+                android:stretchMode="spacingWidth"
+                android:layout_centerHorizontal="true"
+                android:columnWidth="40dp"
+                android:isScrollContainer="false"
+                android:horizontalSpacing="10dp"
+                android:verticalSpacing="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <com.example.android.phatanthaheeli.utils.ExpandableHeightGridView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/gridView2"
+                android:numColumns="auto_fit"
+                android:gravity="center"
+                android:stretchMode="columnWidth"
+                android:layout_centerHorizontal="true"
+                android:columnWidth="40dp"
+                android:isScrollContainer="false"
+                android:layout_marginTop="20dp"
+                android:horizontalSpacing="10dp"
+                android:verticalSpacing="5dp"
+                android:layout_below="@+id/gridView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_below="@id/gridView2"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:id="@+id/retry"
+                    android:padding="10dp"
+                    android:layout_weight="1"
+                    android:text="Try Again"
+                    android:textColor="#fff"
+                    android:background="#e1ef2323"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"
+                    android:padding="10dp"
+                    android:layout_weight="1"
+                    android:text="Hint"
+                    android:textColor="#fff"
+                    android:background="#e143ce03"
+                    />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+    </ScrollView>
+    <ProgressBar
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <GridView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/gridView2"
-        android:numColumns="auto_fit"
-        android:gravity="center"
-        android:stretchMode="columnWidth"
-        android:layout_centerHorizontal="true"
-        android:columnWidth="40dp"
-        android:layout_marginTop="20dp"
-        android:horizontalSpacing="10dp"
-        android:verticalSpacing="5dp"
-        android:layout_below="@+id/gridView1"
+        android:layout_centerInParent="true"
+        android:id="@+id/progress"
+        android:indeterminate="true"
+        android:layout_height="wrap_content" />
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_below="@id/gridView2"
-        android:layout_marginTop="10dp"
-        android:layout_height="wrap_content">
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        android:id="@+id/network_error">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:id="@+id/retry"
-            android:padding="10dp"
-            android:layout_weight="1"
-            android:text="Try Again"
-            android:textColor="#fff"
-            android:background="#e1ef2323"
+            android:text="Network error!"
+            android:textSize="20dp"
+            android:id="@+id/ne"
             />
-        <TextView
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:text="Try again"
             android:layout_centerHorizontal="true"
-            android:padding="10dp"
-            android:layout_weight="1"
-            android:text="Hint"
             android:textColor="#fff"
-            android:background="#e143ce03"
-            />
-    </LinearLayout>
+            android:background="@color/colorPrimary"
+            android:layout_below="@+id/ne"
+            android:layout_marginTop="10dp"
+            android:id="@+id/try_again"/>
+
+    </RelativeLayout>
 </RelativeLayout>

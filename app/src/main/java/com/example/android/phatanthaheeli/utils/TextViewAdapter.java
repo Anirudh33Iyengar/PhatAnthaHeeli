@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import com.example.android.phatanthaheeli.MainActivity;
 import com.example.android.phatanthaheeli.R;
 
 import java.util.Arrays;
@@ -61,9 +62,8 @@ public class TextViewAdapter extends BaseAdapter {
                 @Override
                 public void onClick(View v) {
                     int pos= (int) v.getTag();
-                    setAnswer(answerValues,textViewValues[pos]);
-                    textViewValues[pos]="";
-                    ((TextView)v).setText("");
+                    setAnswer(answerValues,textViewValues[pos], v, pos);
+
                     answer.setAdapter(new TextViewAdapter(context,answerValues,true,null,null));
                     Log.d("answerArray", Arrays.toString(answerValues));
                 }
@@ -75,14 +75,17 @@ public class TextViewAdapter extends BaseAdapter {
         return gridView;
     }
 
-    public void setAnswer(String[] arr, String value)
+    public void setAnswer(String[] arr, String value, View v, int pos)
     {
         for(int i=0;i<arr.length;i++)
         {
             if(arr[i].equals(""))
             {
                 arr[i]=value;
-                Log.d("answerArray", i+" "+value);
+                textViewValues[pos]="";
+                ((TextView)v).setText("");
+                if(i==arr.length-1)
+                    ((MainActivity)context).checkAnswer(arr);
                 break;
             }
 
